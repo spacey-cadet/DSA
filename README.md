@@ -1,6 +1,7 @@
 # Data Structres and Algorithms
-
+# Arrays
 ## Max subarray problem
+
 Given an array, find the contiguous sub-array(a sub-array where elements are adjacent in the array) that has the larest sum of elements. 
 ### Method 1: Kadene's Algorithm
 
@@ -32,6 +33,10 @@ This approach solves this problem by diving the array into sub-arrays and solvin
 - Divide and Conquer: has a 0(n log n) ie log n because the array is divided into subarrays and n because   for each sub-array the maximum sum is found in linear time.
 
 ### Example
+
+# Trees
+
+
 
 
 
