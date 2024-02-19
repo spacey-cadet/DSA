@@ -73,8 +73,55 @@ void print_table(HashTable * table){
     printf("------------------\n");
 }
 
-void insert(HashTable*  table, char* key, char* value){
-    
+void handle_collision (HashTable *table, HashTableItem * item){
 
+
+}
+
+void insert(HashTable*  table, char* key, char* value){
+   HashTableItem * item = create_item(key, value) ;
+   int index = hash_function(key);
+   HashTableItem* current_item = table->items[index];
+   if(current_item == NULL){
+    if(table->count == table->size){
+        printf("Hashtable is full. Insert error/n");
+        free_item(item);
+        return ;
+    }
+    table->items[index]= item;
+    table->count ++ ;
+   }
+   else{
+    if(strcmp(current_item->key , key) == 0){
+        strcpy(table->items[index]->value , value);
+        return; 
+    }
+    else{
+        handle_collision(table, item);
+        return;
+    }
+   }
+}
+
+char * search (HashTable * table, char * key){
+    int index = hash_function(key);
+    HashTableItem * item = table->items[index];
+    if(item != NULL){
+        if(strcmp(item->key , key)== 0){
+            return item->value;
+        }
+    }
+    return NULL;
+}
+
+void print_search(HashTable * table, char * key){
+    char * value;
+    if((value = search(table, key))== NULL){
+        printf("Key: %s does not exist", key);
+        return;
+    }
+    else{
+        printf("Key: %s value: %s", key, value);
+    }
 }
 
